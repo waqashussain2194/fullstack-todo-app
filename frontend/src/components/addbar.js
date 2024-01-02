@@ -3,10 +3,9 @@ import "./styles/Addbar.css";
 
 class AddBar extends React.Component {
   addItem = event => {
-    if (event.key === "Enter") {
-      fetch(`http://localhost:8081/item/create/${event.target.value}`).then(
-        alert("Bug: Reload The Page To View Changes")
-      );
+    if (event.key === "Enter" && event.target.value.trim() !== "") {
+      this.props.addItem(event.target.value);
+      event.target.value = ""; // Clear the input field after adding
     }
   };
 

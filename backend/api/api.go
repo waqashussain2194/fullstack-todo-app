@@ -23,8 +23,8 @@ var err error
 func SetupPostgres() {
 	// db, err = sql.Open("postgres", "postgres://postgres:password@postgres/todo?sslmode=disable")
 
-	// when running locally
-	db, err = sql.Open("postgres", "postgres://postgres:password@localhost/todo?sslmode=disable")
+	// when running in docker
+	db, err = sql.Open("postgres", "postgres://postgres:password@postgres/todo?sslmode=disable")
 
 	if err != nil {
 		fmt.Println(err.Error())
@@ -50,7 +50,7 @@ func TodoItems(c *gin.Context) {
 
 	// Get all rows and add into items
 	items := make([]ListItem, 0)
-	
+
 	if rows != nil {
 		defer rows.Close()
 		for rows.Next() {
