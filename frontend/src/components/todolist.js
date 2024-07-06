@@ -7,7 +7,7 @@ class Todolist extends React.Component {
     return done ? "Done" : "Not Done";
   }
 
-  createItem(item) {
+  createItem = (item) => {
     return (
       <div className="ListItem" key={item.id} id={item.id}>
         <div className="Title">
@@ -24,10 +24,10 @@ class Todolist extends React.Component {
   }
 
   render() {
-    var items = this.props.items;
+    const { items } = this.props;
     return (
-      <div className="TodoList">
-        <div className="List">{items.map(item => this.createItem(item))}</div>
+      <div className="List">
+        {items.map(item => this.createItem(item))}
       </div>
     );
   }

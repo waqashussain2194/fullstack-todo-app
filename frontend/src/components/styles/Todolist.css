@@ -1,28 +1,19 @@
-.TodoList {
-    width: 100%;
-    /* height: 80%; */
-    display: block;
-    overflow: auto;
-    padding: 2% 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
 .List {
+    overflow-y: auto;
     width: 80%;
-    padding: 1% 2%;
+    height: 60%;
+    padding-bottom: 1%;
+    padding-top: 2px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    box-sizing: border-box; 
 }
 
 .ListItem {
     width: 100%;
     padding: 1%;
-    margin: 0.5%;
+    margin: 0.5% 0;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -30,7 +21,9 @@
     background-color: #fafafa;
     border-radius: 4px;
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-sizing: border-box; 
 }
+
 
 .ListItem:hover {
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);

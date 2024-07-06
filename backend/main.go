@@ -4,8 +4,7 @@ import (
 	"net/http"
 
 	api "github.com/el10savio/TODO-Fullstack-App-Go-Gin-Postgres-React/backend/api"
-
-	"github.com/gin-gonic/contrib/cors"
+	"github.com/el10savio/TODO-Fullstack-App-Go-Gin-Postgres-React/backend/middleware"
 	"github.com/gin-gonic/gin"
 )
 
@@ -20,19 +19,19 @@ func indexView(c *gin.Context) {
 func SetupRoutes() *gin.Engine {
 	// Use Gin as router
 	router := gin.Default()
-	config := cors.DefaultConfig()
-	config.AllowAllOrigins = true
-	router.Use(cors.New(config))
+
+	// Use CORS middleware
+	router.Use(middleware.CORSMiddleware())
 
 	// Set route for index
 	router.GET("/", indexView)
 
 	// Set routes for API
-	// Update to POST, UPDATE, DELETE etc
 	router.GET("/items", api.TodoItems)
-	router.GET("/item/create/:item", api.CreateTodoItem)
-	router.GET("/item/update/:id/:done", api.UpdateTodoItem)
-	router.GET("/item/delete/:id", api.DeleteTodoItem)
+	router.POST("/item/create", api.CreateTodoItem)
+	router.PATCH("/item/update/:id/:done", api.UpdateTodoItem)
+	router.DELETE("/item/delete/:id", api.DeleteTodoItem)
+	router.GET("/items/filter/:done", api.FilterTodoItems)
 
 	// Set up Gin Server
 	return router
